@@ -7,7 +7,13 @@ export const userApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://sweep.logiclane.tech" }),
   endpoints: (builder) => ({
     login: builder.query<any, string>({
-      query: (name) => `/adminLogin`,
+      query: (body) => {
+        return {
+          url: `/adminLogin`,
+          method: "POST",
+          body,
+        };
+      },
     }),
   }),
 });
