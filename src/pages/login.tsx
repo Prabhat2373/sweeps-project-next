@@ -5,48 +5,52 @@ import { loginValidation } from "@/validators/loginValidator";
 import { useLazyLoginQuery } from "@/features/rtk/userApi";
 import { useDispatch } from "react-redux";
 import * as crypto from "crypto-js";
+import { decodeData } from "@/utils/utils";
 const Login = () => {
   const initialValues = useMemo(() => {
     return {
-      username: "",
-      password: "",
+      username: "testadmin",
+      password: "testpass",
     };
   }, []);
 
   const dispatch = useDispatch();
+
   const [login, { isLoading }] = useLazyLoginQuery();
   const handleSubmit = async (data: typeof initialValues) => {
     // try {
     const response = await login(data);
     // console.log();
+    const decoded = decodeData(response?.data);
 
     // if (response) {
-    const encodedText = response?.data;
-    console.log("encodedText", encodedText);
+    // const encodedText = response?.data;
+    // console.log("encodedText", encodedText);
 
-    const cryptkey = "RU5DREFUQQ";
+    // const cryptkey = "RU5DREFUQQ";
 
-    const ciphertextBytes = crypto.enc.Base64.parse(encodedText);
+    // const ciphertextBytes = crypto.enc.Base64.parse(encodedText);
 
-    const ivBytes = ciphertextBytes.words.slice(0, 4);
-    const ciphertextRaw = crypto.lib.WordArray.create(
-      ciphertextBytes.words.slice(4)
-    );
+    // const ivBytes = ciphertextBytes.words.slice(0, 4);
+    // const ciphertextRaw = crypto.lib.WordArray.create(
+    //   ciphertextBytes.words.slice(4)
+    // );
 
-    const iv = crypto.lib.WordArray.create(ivBytes);
-    const key = crypto.enc.Utf8.parse(cryptkey);
+    // const iv = crypto.lib.WordArray.create(ivBytes);
+    // const key = crypto.enc.Utf8.parse(cryptkey);
 
-    const decrypted = crypto.AES.decrypt(
-      { ciphertext: ciphertextRaw },
-      cryptkey,
-      { iv }
-    );
+    // const decrypted = crypto.AES.decrypt(
+    //   { ciphertext: ciphertextRaw },
+    //   cryptkey,
+    //   { iv }
+    // );
 
-    console.log("decrypted", decrypted);
+    // console.log("decrypted", decrypted);
 
-    const decryptedText = JSON.parse(decrypted.toString(crypto.enc.Utf8));
+    // const decryptedText = JSON.parse(decrypted.toString(crypto.enc.Utf8));
 
-    console.log("decryptedText", decryptedText);
+    // console.log("decryptedText", decryptedText);
+    console.log('decoded',decoded)
     // }
   };
 
