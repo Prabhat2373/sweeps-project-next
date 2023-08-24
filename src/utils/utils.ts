@@ -21,3 +21,12 @@ export const decodeData = async (data: string) => {
   console.log("json", JSON.parse(JSON.stringify(json)));
   return json;
 };
+
+export const debounce = (fn, timeout) => {
+  let timer: number = null;
+  // setLoader(true)
+  return (...args) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(fn, timeout, ...args);
+  };
+};

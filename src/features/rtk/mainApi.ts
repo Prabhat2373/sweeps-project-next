@@ -29,12 +29,16 @@ export const mainApi = createApi({
       },
     }),
     getCustomerWallet: builder.query({
-      query: (params) => {
+      query: (body) => {
         return {
           url: `/getUsers`,
-          params: params,
+          method: "POST",
+          body: body,
         };
       },
+    }),
+    getRedeems: builder.query({
+      query: (params) => ({ url: "/getRedeems", method: "POST", body: params }),
     }),
   }),
 });
@@ -43,4 +47,5 @@ export const {
   useGetAdminMutation,
   useRevokeAdminLoginMutation,
   useLazyGetCustomerWalletQuery,
+  useLazyGetRedeemsQuery,
 } = mainApi;

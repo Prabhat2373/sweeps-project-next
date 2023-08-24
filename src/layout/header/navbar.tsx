@@ -60,6 +60,39 @@ export function Navbar() {
       <div className="flex justify-between mx-12 py-3 w-full">
         <div>
           <NavigationMenuList>
+            {/* <NavigationMenuItem>
+              <Link href={"settings"}>Settings</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Customers Wallet</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Creation Request</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Redeem Request</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Deposits Request</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Widrawal Request</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Wheel Spin</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Gift Cards</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Whitelist Bins</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Referals</Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href={"settings"}>Bonus Requests</Link>
+            </NavigationMenuItem> */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -70,7 +103,6 @@ export function Navbar() {
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
                       >
-                        {/* <Icons.logo className="h-6 w-6" /> */}
                         <div className="mb-2 mt-4 text-lg font-medium">
                           shadcn/ui
                         </div>

@@ -6,6 +6,7 @@ import { useLazyLoginQuery } from "@/features/rtk/userApi";
 import { useDispatch } from "react-redux";
 import * as crypto from "crypto-js";
 import { decodeData } from "@/utils/utils";
+import { signIn } from "@/features/slices/userSlice";
 const Login = () => {
   const initialValues = useMemo(() => {
     return {
@@ -21,7 +22,7 @@ const Login = () => {
     // try {
     const response = await login(data);
     // console.log();
-    const decoded = decodeData(response?.data);
+    decodeData(response?.data).then((res) => dispatch(signIn(res?.data?.data)));
 
     // if (response) {
     // const encodedText = response?.data;
@@ -50,7 +51,7 @@ const Login = () => {
     // const decryptedText = JSON.parse(decrypted.toString(crypto.enc.Utf8));
 
     // console.log("decryptedText", decryptedText);
-    console.log('decoded',decoded)
+    // console.log("decoded", decoded);
     // }
   };
 
