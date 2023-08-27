@@ -28,6 +28,7 @@ import {
 } from "../ui/table";
 import { debounce } from "@/utils/utils";
 import { ChevronUp } from "lucide-react";
+import NextPagination from "./NextPagination";
 // import { DataTableToolbar } from "./TableToolbar";
 // import { DataTableToolbar } from './TableToolbar'
 
@@ -249,13 +250,14 @@ function DataTable<TData, TValue>({
             </Table>
           </div>
           {!hidePagination && (
-            <DataTablePagination
-              searchParams={updatedSearchParams}
-              setSearchParams={setSearchParams}
-              table={table}
-              response={response}
-              hideRowSelected={hideRowSelected}
-            />
+            // <DataTablePagination
+            //   searchParams={updatedSearchParams}
+            //   setSearchParams={setSearchParams}
+            //   table={table}
+            //   response={response}
+            //   hideRowSelected={hideRowSelected}
+            // />
+            <NextPagination data={data} />
           )}
         </>
       )}

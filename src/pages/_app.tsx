@@ -10,6 +10,7 @@ import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { NextUIProvider } from "@nextui-org/react";
+import { Providers } from "@/layout/providers";
 const MyApp = ({ children }) => {
   const [revokeAdminLogin] = useRevokeAdminLoginMutation();
   const { user } = useSelector((state: RootState) => state.user);
@@ -104,11 +105,13 @@ const MyApp = ({ children }) => {
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
-      <NextUIProvider>
+      {/* <NextUIProvider> */}
+      <Providers>
         <MyApp>
           <Component {...pageProps} />
         </MyApp>
-      </NextUIProvider>
+      </Providers>
+      {/* </NextUIProvider> */}
     </Provider>
   );
 }

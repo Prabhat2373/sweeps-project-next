@@ -22,7 +22,12 @@ const Login = () => {
     // try {
     const response = await login(data);
     // console.log();
-    decodeData(response?.data).then((res) => dispatch(signIn(res?.data?.data)));
+    decodeData(response?.data).then((res) => {
+      console.log("loginRes", res);
+
+      window.localStorage.setItem("token", res?.data?.data?.token);
+      dispatch(signIn(res?.data?.data));
+    });
 
     // if (response) {
     // const encodedText = response?.data;

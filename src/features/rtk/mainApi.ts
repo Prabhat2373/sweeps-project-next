@@ -7,7 +7,10 @@ export const mainApi = createApi({
   reducerPath: "mainApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://sweep.logiclane.tech",
-    headers: { authorization: `Bearer ${getToken()}` },
+    headers: {
+      authorization: `Bearer ${getToken()}`,
+      "Content-Type": "application/json",
+    },
   }),
   endpoints: (builder) => ({
     getAdmin: builder.mutation<any, string>({
@@ -40,6 +43,52 @@ export const mainApi = createApi({
     getRedeems: builder.query({
       query: (params) => ({ url: "/getRedeems", method: "POST", body: params }),
     }),
+    paymnentSettings: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/paymentSettings",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    updatePaymentSettings: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/updatePaymentSettings",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    cashoutMethods: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/cashoutSettings",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    getGames: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/getGames",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+    logoutAdmin: builder.mutation({
+      query: (body) => {
+        return {
+          url: "/adminLogout",
+          method: "POST",
+          body,
+        };
+      },
+    }),
+   
   }),
 });
 
@@ -48,4 +97,5 @@ export const {
   useRevokeAdminLoginMutation,
   useLazyGetCustomerWalletQuery,
   useLazyGetRedeemsQuery,
+  useLogoutAdminMutation,
 } = mainApi;

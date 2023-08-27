@@ -1,5 +1,7 @@
 import DataTable from "@/components/table/DataTable";
+import NextTable from "@/components/table/NextTable";
 import { useLazyGetCustomerWalletQuery } from "@/features/rtk/mainApi";
+import { useLazyTestProductsQuery } from "@/features/rtk/testApi";
 import { RootState } from "@/features/store/store";
 import AppLayout from "@/layout/app/AppLayout";
 import { decodeData } from "@/utils/utils";
@@ -8,6 +10,8 @@ import { useSelector } from "react-redux";
 
 const Wallet = () => {
   const [getCustomerWallet] = useLazyGetCustomerWalletQuery();
+  const customerWalletQuery = useLazyGetCustomerWalletQuery();
+  const productsLazyQuery = useLazyTestProductsQuery();
   const [wallet, setWallet] = useState({});
   const { user } = useSelector((state: RootState) => state.user);
   const [expandedRows, setExpandedRows] = React.useState([]);
@@ -51,23 +55,23 @@ const Wallet = () => {
       ),
     },
   ];
-  useEffect(() => {
-    if (user && user.id) {
-      getCustomerWallet({ userid: user.id }).then((res) => {
-        decodeData(res?.data).then((result) => {
-          console.log("result", result);
+  // useEffect(() => {
+  //   if (user && user.id) {
+  //     getCustomerWallet({ userid: user.id }).then((res) => {
+  //       decodeData(res?.data).then((result) => {
+  //         console.log("result", result);
 
-          setWallet(JSON.parse(result?.data)?.data?.users);
-        });
-      });
-    }
-  }, []);
+  //         setWallet(JSON.parse(result?.data)?.data?.users);
+  //       });
+  //     });
+  //   }
+  // }, []);
 
   console.log("wallet", wallet);
 
   return (
     <AppLayout>
-      <DataTable
+      {/* <DataTable
         columns={columns}
         data={wallet}
         expandedRows={expandedRows}
@@ -75,7 +79,8 @@ const Wallet = () => {
         handleToggleRow={handleToggleRow}
         id="test"
         response={wallet}
-      />
+      /> */}
+      <NextTable columns={columns} lazyQuery={productsLazyQuery} />
     </AppLayout>
   );
 };

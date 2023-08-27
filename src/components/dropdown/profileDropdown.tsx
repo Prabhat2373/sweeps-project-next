@@ -146,8 +146,18 @@ import {
   LogOut,
   Users,
 } from "lucide-react";
+import { useLogoutAdminMutation } from "@/features/rtk/mainApi";
+import { useSelector } from "react-redux";
+import { RootState } from "@/features/store/store";
+import { decodeData } from "@/utils/utils";
 
 export default function ProfileDropdown() {
+  const [logoutApi] = useLogoutAdminMutation();
+  const { user } = useSelector((state: RootState) => state.user);
+  const handleLogout = async () => {
+    const response = await logoutApi({ userid: user && user.id });
+    decodeData(response).then((result) => console.log("result", result));
+  };
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -186,6 +196,7 @@ export default function ProfileDropdown() {
           className="text-danger"
           color="danger"
           startContent={<LogOut />}
+          onClick={handleLogout}
         >
           Logout
         </DropdownItem>

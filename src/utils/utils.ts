@@ -23,7 +23,7 @@ export const decodeData = async (data: string) => {
 };
 
 export const debounce = (fn, timeout) => {
-  let timer: number = null;
+  let timer: any = null;
   // setLoader(true)
   return (...args) => {
     if (timer) clearTimeout(timer);
